@@ -3,10 +3,10 @@ import axios from "axios";
 
 
 const hostApi =
-  process.env.NODE_ENV === "development" ? "http://localhost" : "";
-const portApi = process.env.NODE_ENV === "development" ? 9900 : "";
+  process.env.NODE_ENV === "production" ? "http://localhost" : "";
+const portApi = process.env.NODE_ENV === "production" ? 9900 : "";
 
-const url = "https://massyve.vercel.app:9900"
+
 const errorCatch = (error, string) => {
     if (error) {
       if (error.response) {
@@ -22,7 +22,7 @@ const errorCatch = (error, string) => {
   };
 
 async function loginUsers(data) {
-    const url = `${url}/auth/login`
+    const url = `${hostApi}${portApi ? `:${portApi}` : ``}/auth/login`
     return await axios.post(url, data).then(response => response)
     .catch(error => errorCatch(error, 'Error Login'))
   }
