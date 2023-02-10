@@ -6,7 +6,7 @@ const hostApi =
   process.env.NODE_ENV === "development" ? "http://localhost" : "";
 const portApi = process.env.NODE_ENV === "development" ? 9900 : "";
 
-const url = "https://massyve.vercel.app"
+const url = "https://massyve.vercel.app:9900"
 const errorCatch = (error, string) => {
     if (error) {
       if (error.response) {
