@@ -1,7 +1,12 @@
 import axios from "axios";
 
-const hostApi = 'http://localhost:9900'
 
+
+const hostApi =
+  process.env.NODE_ENV === "development" ? "http://localhost" : "";
+const portApi = process.env.NODE_ENV === "development" ? 9900 : "";
+
+const url = "https://massyve.vercel.app"
 const errorCatch = (error, string) => {
     if (error) {
       if (error.response) {
@@ -17,7 +22,7 @@ const errorCatch = (error, string) => {
   };
 
 async function loginUsers(data) {
-    const url = `${hostApi}/auth/login`
+    const url = `${url}/auth/login`
     return await axios.post(url, data).then(response => response)
     .catch(error => errorCatch(error, 'Error Login'))
   }
